@@ -492,24 +492,23 @@
                 </p>
             </div>
 
-<!-- FORMULARIO CONFIGURADO CON FORMSUBMIT -->
-<form class="contact-form" action="https://formsubmit.co/maravillosa.perla@gmail.com" method="POST">
-    <!-- Campos del formulario -->
-    <input type="text" name="Nombre" placeholder="Tu Nombre" required>
-    <input type="email" name="Correo" placeholder="Tu Correo Electrónico" required>
-    <textarea name="Mensaje" placeholder="Cuéntanos qué muñeca te interesa..." rows="5" required></textarea>
-    
-    <!-- Configuración de asunto y copia (CC) -->
-    <input type="hidden" name="_subject" value="¡Mensaje desde Muñecas - Manos Creativas PTY!">
-    <input type="hidden" name="_cc" value="rgancedov@hotmail.com">
-    <input type="hidden" name="_captcha" value="false">
+            <!-- FORMULARIO CONFIGURADO CON FORMSUBMIT -->
+            <form class="contact-form" action="https://formsubmit.co/maravillosa.perla@gmail.com" method="POST">
+                <!-- Campos del formulario -->
+                <input type="text" name="Nombre" placeholder="Tu Nombre" required>
+                <input type="email" name="Correo" placeholder="Tu Correo Electrónico" required>
+                <textarea name="Mensaje" placeholder="Cuéntanos qué muñeca te interesa..." rows="5" required></textarea>
+                
+                <!-- Configuración para desactivar captcha, asunto personalizado y enviar copia a rgancedov@hotmail.com -->
+                <input type="hidden" name="_subject" value="¡Mensaje desde Muñecas - Manos Creativas PTY!">
+                <input type="hidden" name="_cc" value="rgancedov@hotmail.com">
+                <input type="hidden" name="_captcha" value="false">
 
-    <!-- Redirección de vuelta a la sección de contacto -->
-    <input type="hidden" name="_next" value="https://rgancedov-jpg.github.io/manosymaravillaspty.com/#contacto">
+                <!-- DIRECCIÓN EXACTA DE REDIRECCIÓN (Redirige a la sección de contacto) -->
+                <input type="hidden" name="_next" value="https://rgancedov-jpg.github.io/manosymaravillaspty.com/#contacto">
 
-    <button type="submit">Enviar Mensaje</button>
-</form>
-            
+                <button type="submit">Enviar Mensaje</button>
+            </form>
         </div>
     </section>
 
