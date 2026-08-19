@@ -1,301 +1,1445 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Muñecas - Manos Creativas PTY</title>
-    
-    <!-- Estilos CSS integrados -->
+
     <style>
+        /* =========================================================
+           ESTILOS GENERALES Y PALETA DE COLORES
+        ========================================================= */
+
         :root {
-            --primary-color: #d81b60;
-            --primary-hover: #c2185b;
-            --secondary-color: #fce4ec;
-            --text-color: #333333;
-            --bg-color: #fafafa;
-            --white: #ffffff;
+            --fucsia: #e91e63;
+            --amarillo: #ffeb3b;
+            --azul: #2196f3;
+            --morado: #9c27b0;
+            --verde: #4caf50;
+            --gris-oscuro: #333;
+            --gris-claro: #f4f4f4;
+            --blanco: #ffffff;
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--gris-oscuro);
+            background-color: var(--blanco);
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
         }
 
-        /* Encabezado y Navegación */
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           CABECERA / HEADER
+        ========================================================= */
+
         header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+            background-color: var(--blanco);
+            padding: 10px 20px;
 
-        .header-container {
-            max-width: 1100px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+
+            z-index: 1000;
+
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .logo-container {
+            display: flex;
+            align-items: center;
+
+            text-decoration: none;
+            color: var(--gris-oscuro);
+
+            min-width: 0;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+
+            margin-right: 15px;
+
+            object-fit: contain;
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+
+        /* =========================================================
+           MENU DE NAVEGACION
+        ========================================================= */
+
+        nav ul {
+            list-style: none;
+
+            margin: 0;
+            padding: 0;
+
+            display: flex;
+            gap: 20px;
         }
 
         nav a {
-            color: var(--white);
             text-decoration: none;
-            margin-left: 20px;
+            color: var(--gris-oscuro);
+
             font-weight: 600;
-            transition: color 0.3s ease;
+
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: var(--secondary-color);
+            color: var(--fucsia);
         }
 
-        /* Hero / Bienvenida */
+
+        /* =========================================================
+           ICONOS REDES SOCIALES HEADER
+        ========================================================= */
+
+        .social-icons-header {
+            display: flex;
+            gap: 15px;
+
+            font-size: 1.3rem;
+        }
+
+        .social-icons-header a {
+            color: var(--gris-oscuro);
+            text-decoration: none;
+
+            transition: color 0.3s;
+        }
+
+        .social-icons-header a:hover {
+            color: var(--fucsia);
+        }
+
+
+        /* =========================================================
+           SECCION PORTADA / HERO
+        ========================================================= */
+
         .hero {
-            background-color: var(--secondary-color);
-            padding: 60px 20px;
+            margin-top: 70px;
+
+            position: relative;
+
+            height: 80vh;
+
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: var(--blanco);
+
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
+        #video-background {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            min-width: 100%;
+            min-height: 100%;
+
+            width: auto;
+            height: auto;
+
+            z-index: -100;
+
+            transform: translateX(-50%) translateY(-50%);
+
+            object-fit: cover;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+        .hero-overlay {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.4);
+
+            z-index: -1;
         }
 
-        /* Contenedor General */
-        .container {
-            max-width: 1100px;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+
+            margin-bottom: 20px;
+
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* =========================================================
+           BOTONES
+        ========================================================= */
+
+        .btn {
+            display: inline-block;
+
+            padding: 10px 25px;
+
+            background-color: var(--fucsia);
+            color: var(--blanco);
+
+            text-decoration: none;
+
+            border-radius: 25px;
+
+            font-weight: 700;
+
+            transition:
+                background-color 0.3s,
+                transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #c2185b;
+
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================================
+           SECCIONES GENERALES
+        ========================================================= */
+
+        section {
+            padding: 60px 20px;
+
+            max-width: 1200px;
+
             margin: 0 auto;
-            padding: 40px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--primary-color);
+
+            font-size: 2.2rem;
+
+            color: var(--morado);
+
+            margin-bottom: 40px;
         }
 
-        /* Galería */
-        .gallery-grid {
+
+        /* =========================================================
+           SOBRE NOSOTROS
+        ========================================================= */
+
+        .about-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 40px;
+
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--fucsia);
+
+            margin-top: 0;
+        }
+
+        .about-img {
+            width: 100%;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.1);
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           GALERIA
+        ========================================================= */
+
+        .instagram-feed {
+            background-color: var(--gris-claro);
+
+            max-width: 100%;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fill, minmax(280px, 1fr));
+
             gap: 20px;
         }
 
-        .gallery-card {
-            background: var(--white);
-            border-radius: 8px;
+        .gallery-item {
+            position: relative;
+
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+
+            border-radius: 8px;
+
+            aspect-ratio: 1 / 1;
+
+            background-color: #000;
+
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .gallery-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-card img, .gallery-card video {
+        .gallery-item img {
             width: 100%;
-            height: 250px;
+            height: 100%;
+
             object-fit: cover;
-            display: block;
+
+            transition: transform 0.3s;
+
+            cursor: pointer;
         }
 
-        .gallery-card .info {
-            padding: 15px;
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .btn-center-container {
+            text-align: center;
+
+            margin-top: 40px;
+        }
+
+
+        /* =========================================================
+           LIGHTBOX / VISOR DE IMAGENES
+        ========================================================= */
+
+        .lightbox {
+            display: none;
+
+            position: fixed;
+
+            z-index: 2000;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.85);
+
+            backdrop-filter: blur(5px);
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 0 20px rgba(0, 0, 0, 0.5);
+
+            object-fit: contain;
+
+            animation: zoomIn 0.25s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+
+            top: 20px;
+            right: 35px;
+
+            color: #fff;
+
+            font-size: 40px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: color 0.3s;
+
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            color: var(--fucsia);
+        }
+
+
+        /* =========================================================
+           PROCESO
+        ========================================================= */
+
+        .proceso-container {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 20px;
+
             text-align: center;
         }
 
-        /* Formulario de Contacto */
-        .contact-section {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: 0 auto;
+        .proceso-img {
+            max-width: 400px;
+
+            width: 100%;
+
+            border-radius: 10px;
+
+            cursor: pointer;
         }
+
+
+        /* =========================================================
+           CONTACTO / PEDIDOS
+        ========================================================= */
+
+        .contact-container {
+            background-color: var(--fucsia);
+
+            color: var(--blanco);
+
+            border-radius: 10px;
+
+            padding: 40px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 30px;
+        }
+
+        .contact-info h3 {
+            margin-top: 0;
+
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 1.05rem;
+        }
+
+        .contact-info a {
+            color: var(--blanco);
+
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================================================
+           FORMULARIO
+        ========================================================= */
 
         .contact-form {
             display: flex;
+
             flex-direction: column;
+
             gap: 15px;
         }
 
-        .contact-form label {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .contact-form input, 
+        .contact-form input,
         .contact-form textarea {
             width: 100%;
+
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
 
-        .contact-form input:focus, 
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .btn-submit {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 12px 20px;
             border: none;
+
             border-radius: 5px;
+
+            font-family: inherit;
+
             font-size: 1rem;
-            font-weight: bold;
+
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+
+            min-height: 100px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            box-shadow:
+                0 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-form button {
+            padding: 12px;
+
+            background-color: var(--blanco);
+
+            color: var(--fucsia);
+
+            border: none;
+
+            border-radius: 5px;
+
+            font-weight: 700;
+
             cursor: pointer;
-            transition: background-color 0.3s ease;
+
+            transition:
+                background-color 0.3s,
+                transform 0.1s;
         }
 
-        .btn-submit:hover {
-            background-color: var(--primary-hover);
+        .contact-form button:hover {
+            background-color: var(--gris-claro);
+
+            transform: scale(1.02);
         }
 
-        /* Pie de página */
+
+        /* =========================================================
+           PIE DE PAGINA
+        ========================================================= */
+
         footer {
-            background-color: #222;
-            color: var(--white);
+            background-color: var(--gris-oscuro);
+
+            color: var(--blanco);
+
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-            font-size: 0.9rem;
+
+            padding: 30px 20px;
+
+            margin-top: 40px;
         }
 
-        /* Ajustes Responsivos */
+        .footer-logo {
+            height: 40px;
+
+            margin-bottom: 15px;
+
+            object-fit: contain;
+        }
+
+        .social-icons-footer {
+            margin: 15px 0;
+
+            font-size: 1.5rem;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+        }
+
+        .social-icons-footer a {
+            color: var(--blanco);
+
+            text-decoration: none;
+        }
+
+        .social-icons-footer a:hover {
+            color: var(--fucsia);
+        }
+
+
+        /* =========================================================
+           RESPONSIVIDAD / MOVILES
+        ========================================================= */
+
         @media (max-width: 768px) {
-            .header-container {
+
+            header {
                 flex-direction: column;
-                gap: 10px;
+
+                padding: 15px;
             }
-            .hero h1 {
+
+            nav ul {
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 10px;
+
+                margin-top: 10px;
+            }
+
+            .hero {
+                margin-top: 140px;
+
+                height: 60vh;
+            }
+
+            .hero-content h1 {
                 font-size: 2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+
+                padding: 25px;
+            }
+
+            .site-title {
+                font-size: 1rem;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-container {
+                padding: 20px;
             }
         }
     </style>
+
+
+    <!-- =========================================================
+         FONTAWESOME
+    ========================================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    >
+
 </head>
+
+
 <body>
 
-    <!-- Encabezado y Menú -->
+
+    <!-- =========================================================
+         CABECERA
+    ========================================================= -->
+
     <header>
-        <div class="header-container">
-            <div class="logo">Muñecas - Manos Creativas PTY</div>
-            <nav>
-                <a href="#inicio">Inicio</a>
-                <a href="#galeria">Galería</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
+
+        <a href="#inicio" class="logo-container">
+
+            <img
+                src="logo.jpg"
+                alt="Logo Muñecas - Manos Creativas PTY"
+                class="logo-img"
+            >
+
+            <h1 class="site-title">
+                Muñecas - Manos Creativas PTY
+            </h1>
+
+        </a>
+
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="#inicio">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#sobre-nosotros">
+                        Sobre Nosotros
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#galeria">
+                        Galería
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contacto">
+                        Contacto
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <div class="social-icons-header">
+
+            <a
+                href="https://www.instagram.com/manosymaravillas/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a
+                href="https://wa.me/50768590491"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+            >
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
         </div>
+
     </header>
 
-    <!-- Sección de Bienvenida -->
+
+
+    <!-- =========================================================
+         PORTADA / HERO
+    ========================================================= -->
+
     <section id="inicio" class="hero">
-        <h1>Diseños Artesanales Hechos a Mano</h1>
-        <p>Arte, detalle y dedicación en cada una de nuestras creaciones en Panamá.</p>
-    </section>
 
-    <!-- Sección de Galería (Fotos y Videos) -->
-    <main class="container" id="galeria">
-        <h2 class="section-title">Nuestras Muñecas</h2>
-        <div class="gallery-grid">
-            
-            <!-- Ejemplo Imagen 1 -->
-            <div class="gallery-card">
-                <img src="https://via.placeholder.com/400x300?text=Mu%C3%B1eca+Artesanal+1" alt="Muñeca Artesanal">
-                <div class="info">
-                    <h3>Muñeca Tradicional</h3>
-                </div>
-            </div>
+        <video
+            autoplay
+            loop
+            muted
+            playsinline
+            id="video-background"
+        >
 
-            <!-- Ejemplo Imagen 2 -->
-            <div class="gallery-card">
-                <img src="https://via.placeholder.com/400x300?text=Mu%C3%B1eca+Artesanal+2" alt="Muñeca Personalizada">
-                <div class="info">
-                    <h3>Diseño Personalizado</h3>
-                </div>
-            </div>
+            <source
+                src="publicacion_1_video.mp4"
+                type="video/mp4"
+            >
 
-            <!-- Ejemplo Video -->
-            <div class="gallery-card">
-                <video controls poster="https://via.placeholder.com/400x300?text=Video+Proceso">
-                    <source src="video-demo.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-                <div class="info">
-                    <h3>Proceso de Elaboración</h3>
-                </div>
-            </div>
+            Tu navegador no soporta videos HTML5.
+
+        </video>
+
+
+        <div class="hero-overlay"></div>
+
+
+        <div class="hero-content">
+
+            <h1>
+                Artesanía Panameña con un Toque Creativo
+            </h1>
+
+            <a
+                href="#galeria"
+                class="btn"
+            >
+                Explora Nuestras Muñecas
+            </a>
 
         </div>
-    </main>
 
-    <!-- Sección de Contacto con FormSubmit -->
-    <section class="container" id="contacto">
-        <h2 class="section-title">Contáctanos</h2>
-        <div class="contact-section">
-            <form class="contact-form" action="https://formsubmit.co/maravillosa.perla@gmail.com" method="POST">
-                
-                <div>
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" name="Nombre" placeholder="Tu nombre" required>
-                </div>
+    </section>
 
-                <div>
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="email" id="correo" name="Correo" placeholder="tu@correo.com" required>
-                </div>
 
-                <div>
-                    <label for="mensaje">Mensaje o Pedido</label>
-                    <textarea id="mensaje" name="Mensaje" rows="5" placeholder="Cuéntanos qué muñeca o diseño te interesa..." required></textarea>
-                </div>
 
-                <!-- Configuraciones FormSubmit -->
-                <input type="hidden" name="_cc" value="rgancedov@hotmail.com">
-                <input type="hidden" name="_subject" value="¡Mensaje desde Muñecas - Manos Creativas PTY!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://rgancedov-jpg.github.io/manosymaravillaspty.com/#contacto">
+    <!-- =========================================================
+         SOBRE NOSOTROS
+    ========================================================= -->
 
-                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+    <section id="sobre-nosotros">
+
+        <div class="about-container">
+
+            <div class="about-text">
+
+                <h2>
+                    El Alma Detrás de Muñecas - Manos Creativas PTY
+                </h2>
+
+                <p>
+                    Nuestra pasión es dar vida a muñecas únicas que
+                    celebran la rica cultura y tradiciones de Panamá.
+                    Cada pieza es elaborada a mano con amor,
+                    dedicación y materiales cuidadosamente seleccionados.
+                </p>
+
+                <p>
+                    Nos especializamos en vestuarios folclóricos,
+                    capturando la belleza de la Pollera y otros trajes
+                    típicos en miniaturas llenas de detalle.
+                </p>
+
+            </div>
+
+
+            <img
+                src="publicacion_3_foto.jpg"
+                alt="Muñecas artesanales"
+                class="about-img zoomable"
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         GALERIA
+    ========================================================= -->
+
+    <section
+        id="galeria"
+        class="instagram-feed"
+    >
+
+        <h2 class="section-title">
+            Nuestras Publicaciones
+        </h2>
+
+
+        <div
+            class="gallery-grid"
+            id="gallery-container"
+        >
+            <!--
+                Las 58 publicaciones se generan automáticamente
+                mediante JavaScript.
+            -->
+        </div>
+
+
+        <div class="btn-center-container">
+
+            <a
+                href="https://www.instagram.com/manosymaravillas/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+            >
+                Ver más en Instagram
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         PROCESO
+    ========================================================= -->
+
+    <section id="proceso">
+
+        <h2 class="section-title">
+            La Magia Detrás de la Creación
+        </h2>
+
+
+        <div class="proceso-container">
+
+            <img
+                src="publicacion_2_foto.jpg"
+                alt="Materiales: Escamas de pescado"
+                class="proceso-img zoomable"
+            >
+
+
+            <p>
+                Utilizamos materiales auténticos y técnicas artesanales.
+                En esta imagen puedes ver nuestras escamas de pescado
+                teñidas a mano, listas para convertirse en delicados
+                detalles de una Pollera.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CONTACTO / PEDIDOS
+    ========================================================= -->
+
+    <section id="contacto">
+
+        <div class="contact-container">
+
+
+            <!-- INFORMACION DE CONTACTO -->
+
+            <div class="contact-info">
+
+                <h3>
+                    Haz Tu Pedido o Consulta
+                </h3>
+
+
+                <p>
+                    ¿Te enamoraste de alguna de nuestras muñecas o
+                    quieres una creación personalizada?
+                    Contáctanos y cuéntanos tu idea.
+                    Estaremos encantados de atenderte.
+                </p>
+
+
+                <p>
+
+                    <i class="fas fa-user"></i>
+
+                    <strong>
+                        Artesana y Creadora:
+                    </strong>
+
+                    Blanca E. García C.
+
+                </p>
+
+
+                <p>
+
+                    <i class="fas fa-envelope"></i>
+
+                    <a
+                        href="mailto:maravillosa.perla@gmail.com"
+                    >
+                        maravillosa.perla@gmail.com
+                    </a>
+
+                </p>
+
+
+                <p>
+
+                    <i class="fab fa-whatsapp"></i>
+
+                    <a
+                        href="https://wa.me/50768590491"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        +507 6859-0491
+                    </a>
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 FORMULARIO DE CONTACTO
+                 FORM SUBMIT
+            ====================================================== -->
+
+            <form
+                class="contact-form"
+                action="https://formsubmit.co/maravillosa.perla@gmail.com"
+                method="POST"
+            >
+
+                <!-- NOMBRE -->
+
+                <input
+                    type="text"
+                    name="Nombre"
+                    placeholder="Tu Nombre"
+                    required
+                >
+
+
+                <!-- CORREO DEL CLIENTE -->
+
+                <input
+                    type="email"
+                    name="Correo"
+                    placeholder="Tu Correo Electrónico"
+                    required
+                >
+
+
+                <!-- MENSAJE -->
+
+                <textarea
+                    name="Mensaje"
+                    placeholder="Cuéntanos qué muñeca te interesa..."
+                    rows="5"
+                    required
+                ></textarea>
+
+
+                <!-- ASUNTO DEL CORREO -->
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="¡Mensaje desde Muñecas - Manos Creativas PTY!"
+                >
+
+
+                <!-- =================================================
+                     COPIA DEL MENSAJE
+                     La copia llegará a Ricardo
+                ================================================== -->
+
+                <input
+                    type="hidden"
+                    name="_cc"
+                    value="rgancedov@hotmail.com"
+                >
+
+
+                <!-- DESACTIVAR CAPTCHA -->
+
+                <input
+                    type="hidden"
+                    name="_captcha"
+                    value="false"
+                >
+
+
+                <!-- =================================================
+                     REDIRECCION DESPUES DEL ENVIO
+
+                     Regresa a la pagina y directamente a CONTACTO
+                ================================================== -->
+
+                <input
+                    type="hidden"
+                    name="_next"
+                    value="https://rgancedov-jpg.github.io/manosymaravillaspty.com/#contacto"
+                >
+
+
+                <!-- BOTON -->
+
+                <button
+                    type="submit"
+                >
+                    Enviar Mensaje
+                </button>
+
             </form>
+
         </div>
+
     </section>
 
-    <!-- Pie de página -->
+
+
+    <!-- =========================================================
+         PIE DE PAGINA
+    ========================================================= -->
+
     <footer>
-        <p>&copy; 2026 Muñecas - Manos Creativas PTY. Todos los derechos reservados.</p>
+
+        <img
+            src="logo.jpg"
+            alt="Logo Muñecas - Manos Creativas PTY"
+            class="footer-logo"
+        >
+
+
+        <p>
+            Muñecas - Manos Creativas PTY
+        </p>
+
+
+        <div class="social-icons-footer">
+
+            <a
+                href="https://www.instagram.com/manosymaravillas/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+                <i class="fab fa-instagram"></i>
+            </a>
+
+
+            <a
+                href="https://wa.me/50768590491"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+            >
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+        </div>
+
+
+        <p>
+            &copy; 2026 Muñecas - Manos Creativas PTY.
+            Todos los derechos reservados.
+        </p>
+
     </footer>
+
+
+
+    <!-- =========================================================
+         LIGHTBOX / VISOR AMPLIADO
+    ========================================================= -->
+
+    <div
+        id="lightbox"
+        class="lightbox"
+    >
+
+        <span
+            class="lightbox-close"
+            id="lightbox-close"
+        >
+            &times;
+        </span>
+
+
+        <img
+            class="lightbox-content"
+            id="lightbox-img"
+            alt="Imagen ampliada"
+        >
+
+    </div>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         GALERIA + LIGHTBOX
+    ========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           PUBLICACIONES QUE CONTIENEN VIDEO
+        ===================================================== */
+
+        const publicacionesConVideo = [
+            1,
+            7,
+            8,
+            9,
+            11,
+            14,
+            15,
+            16,
+            18,
+            21,
+            24,
+            25,
+            27,
+            49,
+            53
+        ];
+
+
+        /* =====================================================
+           TOTAL DE PUBLICACIONES
+        ===================================================== */
+
+        const totalPublicaciones = 58;
+
+
+        /* =====================================================
+           ELEMENTOS HTML
+        ===================================================== */
+
+        const galleryContainer =
+            document.getElementById('gallery-container');
+
+        const lightbox =
+            document.getElementById('lightbox');
+
+        const lightboxImg =
+            document.getElementById('lightbox-img');
+
+        const lightboxClose =
+            document.getElementById('lightbox-close');
+
+
+
+        /* =====================================================
+           GENERAR GALERIA AUTOMATICAMENTE
+        ===================================================== */
+
+        for (
+            let i = 1;
+            i <= totalPublicaciones;
+            i++
+        ) {
+
+            const itemDiv =
+                document.createElement('div');
+
+            itemDiv.className =
+                'gallery-item';
+
+
+            /* =================================================
+               SI LA PUBLICACION TIENE VIDEO
+            ================================================= */
+
+            if (
+                publicacionesConVideo.includes(i)
+            ) {
+
+                itemDiv.innerHTML = `
+
+                    <video
+                        controls
+                        poster="publicacion_${i}_foto.jpg"
+                        preload="none"
+                    >
+
+                        <source
+                            src="publicacion_${i}_video.mp4"
+                            type="video/mp4"
+                        >
+
+                        Tu navegador no soporta
+                        videos HTML5.
+
+                    </video>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               SI ES UNA IMAGEN
+            ================================================= */
+
+            else {
+
+                itemDiv.innerHTML = `
+
+                    <img
+                        src="publicacion_${i}_foto.jpg"
+                        alt="Publicación ${i} - Muñecas Artesanales"
+                        class="zoomable"
+                        loading="lazy"
+                    >
+
+                `;
+
+            }
+
+
+            galleryContainer.appendChild(
+                itemDiv
+            );
+
+        }
+
+
+
+        /* =====================================================
+           LIGHTBOX
+           ABRIR IMAGEN
+        ===================================================== */
+
+        document.addEventListener(
+            'click',
+            function (e) {
+
+                if (
+                    e.target.tagName === 'IMG' &&
+                    (
+                        e.target.classList.contains('zoomable') ||
+                        e.target.closest('.gallery-item')
+                    )
+                ) {
+
+                    lightboxImg.src =
+                        e.target.src;
+
+                    lightbox.style.display =
+                        'flex';
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CERRAR LIGHTBOX
+        ===================================================== */
+
+        function closeLightbox() {
+
+            lightbox.style.display =
+                'none';
+
+            lightboxImg.src =
+                '';
+
+        }
+
+
+
+        /* =====================================================
+           CERRAR CON X
+        ===================================================== */
+
+        lightboxClose.addEventListener(
+            'click',
+            closeLightbox
+        );
+
+
+
+        /* =====================================================
+           CERRAR AL HACER CLICK FUERA
+        ===================================================== */
+
+        lightbox.addEventListener(
+            'click',
+            function (e) {
+
+                if (
+                    e.target === lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CERRAR CON ESC
+        ===================================================== */
+
+        document.addEventListener(
+            'keydown',
+            function (e) {
+
+                if (
+                    e.key === 'Escape'
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    </script>
 
 </body>
 </html>
