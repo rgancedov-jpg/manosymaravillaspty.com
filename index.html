@@ -499,12 +499,14 @@
                 <input type="email" name="Correo" placeholder="Tu Correo Electrónico" required>
                 <textarea name="Mensaje" placeholder="Cuéntanos qué muñeca te interesa..." rows="5" required></textarea>
                 
-                <!-- Configuración para desactivar captcha, asunto personalizado y enviar copia a rgancedov@hotmail.com -->
+                <!-- Configuración de FormSubmit -->
                 <input type="hidden" name="_subject" value="¡Mensaje desde Muñecas - Manos Creativas PTY!">
-                <input type="hidden" name="_cc" value="rgancedov@hotmail.com">
                 <input type="hidden" name="_captcha" value="false">
 
-                <!-- DIRECCIÓN EXACTA DE REDIRECCIÓN (Redirige a la sección de contacto) -->
+                <!-- Enviar copia (CC) a correo secundario -->
+                <input type="hidden" name="_cc" value="rgancedov@hotmail.com">
+
+                <!-- Redirección manteniendo la posición en la sección #contacto -->
                 <input type="hidden" name="_next" value="https://rgancedov-jpg.github.io/manosymaravillaspty.com/#contacto">
 
                 <button type="submit">Enviar Mensaje</button>
